@@ -23,7 +23,7 @@ const baseSendEmail = async (req, res) => {
       });
   } catch (error) {
     console.error("Error in baseSendEmail:", error);
-    res.status(500).send("Failed to send email", error.message);
+    res.status(500).send("Failed to baseSendEmail send email", error.message);
   }
 };
 
