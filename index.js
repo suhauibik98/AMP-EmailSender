@@ -203,7 +203,46 @@ async function shutdown(signal) {
   }
 }
 
-async function start() {
+// async function start() {
+//   try {
+//     if (NODE_ENV !== "production") {
+//       console.warn("Warning: NODE_ENV is not set to production");
+//     }
+
+//     await transporter.verify();
+//     console.log("SMTP server is ready");
+
+//     await connectionDB();
+//     console.log("Mongo connected");
+
+//     server = app.listen(PORT, "0.0.0.0", () => {
+//       console.log(`Email service running on port ${PORT} in ${NODE_ENV} mode`);
+//     });
+
+//     server.headersTimeout = 60 * 1000;
+//     server.requestTimeout = 30 * 1000;
+//     server.keepAliveTimeout = 5 * 1000;
+//   } catch (error) {
+//     console.error("Error starting server:", error);
+//     process.exit(1);
+//   }
+// }
+
+// process.on("SIGINT", () => shutdown("SIGINT"));
+// process.on("SIGTERM", () => shutdown("SIGTERM"));
+
+// process.on("unhandledRejection", (reason) => {
+//   console.error("Unhandled Rejection:", reason);
+// });
+
+// process.on("uncaughtException", (error) => {
+//   console.error("Uncaught Exception:", error);
+//   shutdown("uncaughtException");
+// });
+
+// start();
+
+app.listen(PORT ,async ()=>{
   try {
     if (NODE_ENV !== "production") {
       console.warn("Warning: NODE_ENV is not set to production");
@@ -215,31 +254,14 @@ async function start() {
     await connectionDB();
     console.log("Mongo connected");
 
-    server = app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Email service running on port ${PORT} in ${NODE_ENV} mode`);
-    });
+    console.log(`Email service running on port ${PORT} in ${NODE_ENV} mode`);
+    
 
-    server.headersTimeout = 60 * 1000;
-    server.requestTimeout = 30 * 1000;
-    server.keepAliveTimeout = 5 * 1000;
+
   } catch (error) {
     console.error("Error starting server:", error);
     process.exit(1);
   }
-}
-
-process.on("SIGINT", () => shutdown("SIGINT"));
-process.on("SIGTERM", () => shutdown("SIGTERM"));
-
-process.on("unhandledRejection", (reason) => {
-  console.error("Unhandled Rejection:", reason);
-});
-
-process.on("uncaughtException", (error) => {
-  console.error("Uncaught Exception:", error);
-  shutdown("uncaughtException");
-});
-
-start();
+})
 
 
