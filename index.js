@@ -150,7 +150,7 @@ app.use((req, res, next) => {
 /**
  * Routes
  */
-app.use("/api/v1", emailLimiter, authMiddleware, emailRouter);
+app.use("/api/v1", emailLimiter, emailRouter);
 
 /**
  * 404 handler

@@ -15,7 +15,7 @@ const router = express.Router();
 router.post(
   "/email/send",
   emailRateLimiter,
-  requireRole(ROLES.ADMIN, ROLES.DIRECTOR, ROLES.EMPLOYEE),
+  // requireRole(ROLES.ADMIN, ROLES.DIRECTOR, ROLES.EMPLOYEE),
   validateEmailRequest,
   asyncHandler(baseSendEmail),
 );
