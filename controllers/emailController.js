@@ -2,6 +2,8 @@ const { sendEmailTo } = require("../mainService/emailService");
 const Email = require("../models/Email");
 
 const baseSendEmail = async (req, res) => {
+  console.log("REQ IP :",req.ip);
+  
   try {
     // أرسل الإيميل أولاً
     const emailResult = await sendEmailTo(req.body);
